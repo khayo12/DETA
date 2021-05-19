@@ -13,7 +13,7 @@ namespace CheckService.Controllers
         {
             if(string.IsNullOrEmpty(serviceName))
             {
-                throw new Exception();
+                throw new Exception("The service name cannot be empty.");
             }
             return status.ServiceStatus(serviceName);
         }

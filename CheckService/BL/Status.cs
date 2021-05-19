@@ -10,6 +10,11 @@ namespace CheckService.BL
         {
             ServiceController sc = new ServiceController(servicename);
 
+            if(sc == null)
+            {
+                throw new System.Exception("Service not found.");
+            }
+
             switch (sc.Status)
             {
                 case ServiceControllerStatus.Running:
@@ -30,6 +35,12 @@ namespace CheckService.BL
         public string UpdateStatus(StatusRequest statusRequest)
         {
             ServiceController sc = new ServiceController(statusRequest.ServiceName);
+
+            if (sc == null)
+            {
+                throw new System.Exception("Service not found.");
+            }
+
             var status = ServiceStatus(statusRequest.ServiceName);
             var result = "";
             if(status == "Running" && statusRequest.Action == "Stop")
